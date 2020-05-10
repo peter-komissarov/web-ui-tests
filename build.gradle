@@ -1,0 +1,52 @@
+plugins {
+    id 'io.qameta.allure' version '2.8.1'  //  https://plugins.gradle.org/plugin/io.qameta.allure
+    id 'java'
+}
+
+group getGroup()
+version getVersion()
+
+compileJava.enabled = false
+processResources.enabled = false
+sourceCompatibility = JavaVersion.current()
+targetCompatibility = JavaVersion.current()
+
+test.ignoreFailures = true
+test {
+    useJUnitPlatform()
+    reports {
+        junitXml.enabled = false
+        html.enabled = false
+    }
+    testLogging {
+        showStandardStreams = false
+    }
+}
+
+allure {
+    version = '2.13.3'  //  https://bintray.com/qameta/maven/allure2/_latestVersion
+    autoconfigure = false
+    configuration = 'testImplementation'
+    allureJavaVersion = 'latest.release'
+    aspectjweaver = true
+    aspectjVersion = 'latest.release'
+    clean = false
+    resultsDir = file('allure-results')
+    reportDir = file('allure-report')
+    useJUnit5 {
+        version = 'latest.release'
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation('org.junit.jupiter:junit-jupiter-api:latest.release')
+    testImplementation('com.codeborne:selenide:latest.release')
+    testImplementation('io.qameta.allure:allure-selenide:latest.release')
+    testImplementation('com.github.automatedowl:allure-environment-writer:latest.release')
+    testRuntimeOnly('org.slf4j:slf4j-nop:latest.release')
+    testRuntimeOnly('org.junit.jupiter:junit-jupiter-engine:latest.release')
+}
