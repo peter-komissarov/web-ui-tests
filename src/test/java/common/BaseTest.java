@@ -1,8 +1,5 @@
 package common;
 
-import com.codeborne.selenide.AssertionMode;
-import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.SelectorMode;
 import com.codeborne.selenide.WebDriverRunner;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import com.google.common.collect.ImmutableMap;
@@ -14,6 +11,12 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Objects;
+import java.util.Properties;
+
 import static com.github.automatedowl.tools.AllureEnvironmentWriter.allureEnvironmentWriter;
 
 
@@ -21,25 +24,15 @@ public abstract class BaseTest {
     @BeforeAll
     @Step("Deploy common test infrastructure")
     protected static void beforeAll() {
-        System.setProperty("webdriver.chrome.args", "--disable-logging");
-        System.setProperty("webdriver.chrome.silentOutput", "true");
-
-        Configuration.assertionMode = AssertionMode.STRICT;
-        Configuration.browser = "chrome";
-        Configuration.clickViaJs = false;
-        Configuration.driverManagerEnabled = true;
-        Configuration.fastSetValue = true;
-        Configuration.headless = true;
-        Configuration.holdBrowserOpen = false;
-        Configuration.pageLoadStrategy = "eager";
-        Configuration.pollingInterval = 50;
-        Configuration.reopenBrowserOnFail = true;
-        Configuration.savePageSource = false;
-        Configuration.screenshots = false;
-        Configuration.selectorMode = SelectorMode.CSS;
-        Configuration.startMaximized = false;
-        Configuration.timeout = 4000;
-        Configuration.versatileSetValue = true;
+        Properties properties = new Properties();
+        ClassLoader classLoader = BaseTest.class.getClassLoader();
+        File file = new File(Objects.requireNonNull(classLoader.getResource("selenide.properties")).getFile());
+        try {
+            properties.load(new FileInputStream(file.getAbsolutePath()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.setProperties(properties);
     }
 
     @AfterAll
