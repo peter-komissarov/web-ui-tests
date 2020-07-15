@@ -1,5 +1,6 @@
 [
   {
+    "//": "https://docs.qameta.io/allure/#_categories_2",
     "name": "Ignored tests",
     "matchedStatuses": [
       "skipped"

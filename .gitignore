@@ -74,3 +74,4 @@ gradle-app.setting
 /.allure/
 /null/
 /.idea/
+/allure-report/

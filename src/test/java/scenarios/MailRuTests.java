@@ -27,7 +27,8 @@ public final class MailRuTests extends BaseTest {
                 .openEmail(Input.MAIL_NUMBER)
                 .assertSender(Output.SENDER)
                 .assertSubject(Output.SUBJECT)
-                .assertBody(Output.BODY).logout();
+                .assertBody(Output.BODY)
+                .logout();
     }
 
     @DisplayName("Failed test")
@@ -43,7 +44,8 @@ public final class MailRuTests extends BaseTest {
                 .openEmail(Input.MAIL_NUMBER)
                 .assertSender("Invalid expected sender")
                 .assertSubject(Output.SUBJECT)
-                .assertBody(Output.BODY).logout();
+                .assertBody(Output.BODY)
+                .logout();
         throw new AssertionError("Failed test example");
     }
 
@@ -60,7 +62,8 @@ public final class MailRuTests extends BaseTest {
                 .openEmail(Input.MAIL_NUMBER)
                 .assertSender(Output.SENDER)
                 .assertSubject(Output.SUBJECT)
-                .assertBody(Output.BODY).logout();
+                .assertBody(Output.BODY)
+                .logout();
         throw new Exception("Broken test example exception");
     }
 
@@ -78,6 +81,7 @@ public final class MailRuTests extends BaseTest {
                 .openEmail(Input.MAIL_NUMBER)
                 .assertSender(Output.SENDER)
                 .assertSubject(Output.SUBJECT)
-                .assertBody(Output.BODY).logout();
+                .assertBody(Output.BODY)
+                .logout();
     }
 }
