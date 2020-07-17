@@ -1,6 +1,5 @@
 package common;
 
-import com.codeborne.selenide.WebDriverRunner;
 import com.codeborne.selenide.junit5.SoftAssertsExtension;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import helpers.AllureHelper;
@@ -17,23 +16,20 @@ import org.junit.jupiter.api.extension.ExtendWith;
 public abstract class BaseTest {
     @BeforeAll
     @Step("Deploy common test infrastructure")
-    protected static void beforeAll() {
+    protected static void setupOnce() {
         SelenideHelper.configureSelenide();
         AllureHelper.writeEnvVariables();
     }
 
     @AfterAll
     @Step("Clear common test infrastructure")
-    protected static void afterAll() {
-        if (WebDriverRunner.hasWebDriverStarted()) {
-            WebDriverRunner.closeWebDriver();
-        }
+    protected static void teardown() {
         SelenideLogger.removeAllListeners();
     }
 
     @BeforeEach
     @Step("Deploy test infrastructure")
-    protected final void beforeEach() {
+    protected final void setup() {
         SelenideLogger.addListener(String.valueOf(Thread.currentThread().getId()), new AllureSelenide()
                 .includeSelenideSteps(true)
                 .screenshots(true)
