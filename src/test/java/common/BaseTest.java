@@ -15,21 +15,20 @@ import org.junit.jupiter.api.extension.ExtendWith;
 @ExtendWith({SoftAssertsExtension.class})
 public abstract class BaseTest {
     @BeforeAll
-    @Step("Deploy common test infrastructure")
-    protected static void setupOnce() {
+    @Step("Setup test infrastructure once")
+    protected static void beforeAll() {
         SelenideHelper.configureSelenide();
         AllureHelper.writeEnvVariables();
     }
 
     @AfterAll
-    @Step("Clear common test infrastructure")
-    protected static void teardown() {
-        SelenideLogger.removeAllListeners();
+    @Step("Teardown test infrastructure once")
+    protected static void afterAll() {
     }
 
     @BeforeEach
-    @Step("Deploy test infrastructure")
-    protected final void setup() {
+    @Step("Setup test infrastructure")
+    protected final void beforeEach() {
         SelenideLogger.addListener(String.valueOf(Thread.currentThread().getId()), new AllureSelenide()
                 .includeSelenideSteps(true)
                 .screenshots(true)
@@ -37,7 +36,7 @@ public abstract class BaseTest {
     }
 
     @AfterEach
-    @Step("Clear test infrastructure")
+    @Step("Teardown test infrastructure")
     protected final void afterEach() {
         SelenideLogger.removeListener(String.valueOf(Thread.currentThread().getId()));
     }
