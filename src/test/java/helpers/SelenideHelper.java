@@ -7,7 +7,7 @@ import com.codeborne.selenide.SelectorMode;
 public final class SelenideHelper {
     public static void configureSelenide() {
         Configuration.assertionMode = AssertionMode.STRICT;
-        Configuration.browser = "firefox";
+        Configuration.browser = "chrome";
         Configuration.clickViaJs = false;
         Configuration.driverManagerEnabled = true;
         Configuration.fastSetValue = true;

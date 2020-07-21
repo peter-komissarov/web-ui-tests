@@ -1,6 +1,5 @@
 package common;
 
-import com.codeborne.selenide.junit5.SoftAssertsExtension;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import helpers.AllureHelper;
 import helpers.SelenideHelper;
@@ -10,9 +9,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.extension.ExtendWith;
 
-@ExtendWith({SoftAssertsExtension.class})
 public abstract class BaseTest {
     @BeforeAll
     @Step("Setup test infrastructure once")
@@ -29,10 +26,7 @@ public abstract class BaseTest {
     @BeforeEach
     @Step("Setup test infrastructure")
     protected final void beforeEach() {
-        SelenideLogger.addListener(String.valueOf(Thread.currentThread().getId()), new AllureSelenide()
-                .includeSelenideSteps(true)
-                .screenshots(true)
-                .savePageSource(true));
+        SelenideLogger.addListener(String.valueOf(Thread.currentThread().getId()), new AllureSelenide());
     }
 
     @AfterEach
