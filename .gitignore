@@ -76,3 +76,4 @@ gradle-app.setting
 /.idea/
 !/.idea/dictionaries/shared.xml
 /allure-report/
+/target/

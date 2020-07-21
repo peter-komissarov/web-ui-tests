@@ -1,33 +1,42 @@
 package scenarios;
 
 import common.BaseTest;
-import constants.Input;
-import constants.Output;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import pages.LoginPage;
+import pojo.Input;
+import pojo.Output;
 
 import static com.codeborne.selenide.Selenide.open;
 
 @DisplayName("Mail.ru suite")
 public final class MailRuTests extends BaseTest {
+
+    private static final Input input;
+    private static final Output output;
+
+    static {
+        input = Input.builder().build();
+        output = Output.builder().build();
+    }
+
     @DisplayName("Passed test")
     @Feature("Mailbox feature")
     @Story("Passed story")
     @Test
     public final void verifyEmailDataPassed() {
-        open(Input.BASE_URL, LoginPage.class)
-                .setLogin(Input.LOGIN)
+        open(input.getBaseUrl(), LoginPage.class)
+                .setLogin(input.getLogin())
                 .goToPasswordEnter()
-                .setPassword(Input.PASSWORD)
+                .setPassword(input.getPassword())
                 .enterToMailbox()
-                .openEmail(Input.MAIL_NUMBER)
-                .assertSender(Output.SENDER)
-                .assertSubject(Output.SUBJECT)
-                .assertBody(Output.BODY)
+                .openEmail(input.getMailNumber())
+                .assertSender(output.getSender())
+                .assertSubject(output.getSubject())
+                .assertBody(output.getBody())
                 .logout();
     }
 
@@ -36,15 +45,19 @@ public final class MailRuTests extends BaseTest {
     @Story("Failed story")
     @Test
     public final void verifyEmailDataFailed() {
-        open(Input.BASE_URL, LoginPage.class)
-                .setLogin(Input.LOGIN)
+        Output invalidOutput = output
+                .toBuilder()
+                .sender("Invalid expected sender")
+                .build();
+        open(input.getBaseUrl(), LoginPage.class)
+                .setLogin(input.getLogin())
                 .goToPasswordEnter()
-                .setPassword(Input.PASSWORD)
+                .setPassword(input.getPassword())
                 .enterToMailbox()
-                .openEmail(Input.MAIL_NUMBER)
-                .assertSender("Invalid expected sender")
-                .assertSubject(Output.SUBJECT)
-                .assertBody(Output.BODY)
+                .openEmail(input.getMailNumber())
+                .assertSender(invalidOutput.getSender())
+                .assertSubject(invalidOutput.getSubject())
+                .assertBody(invalidOutput.getBody())
                 .logout();
         throw new AssertionError("Failed test example");
     }
@@ -54,15 +67,15 @@ public final class MailRuTests extends BaseTest {
     @Story("Broken story")
     @Test
     public final void verifyEmailDataBroken() throws Exception {
-        open(Input.BASE_URL, LoginPage.class)
-                .setLogin(Input.LOGIN)
+        open(input.getBaseUrl(), LoginPage.class)
+                .setLogin(input.getLogin())
                 .goToPasswordEnter()
-                .setPassword(Input.PASSWORD)
+                .setPassword(input.getPassword())
                 .enterToMailbox()
-                .openEmail(Input.MAIL_NUMBER)
-                .assertSender(Output.SENDER)
-                .assertSubject(Output.SUBJECT)
-                .assertBody(Output.BODY)
+                .openEmail(input.getMailNumber())
+                .assertSender(output.getSender())
+                .assertSubject(output.getSubject())
+                .assertBody(output.getBody())
                 .logout();
         throw new Exception("Broken test example exception");
     }
@@ -73,15 +86,15 @@ public final class MailRuTests extends BaseTest {
     @Disabled
     @Test
     public final void verifyEmailDataIgnored() {
-        open(Input.BASE_URL, LoginPage.class)
-                .setLogin(Input.LOGIN)
+        open(input.getBaseUrl(), LoginPage.class)
+                .setLogin(input.getLogin())
                 .goToPasswordEnter()
-                .setPassword(Input.PASSWORD)
+                .setPassword(input.getPassword())
                 .enterToMailbox()
-                .openEmail(Input.MAIL_NUMBER)
-                .assertSender(Output.SENDER)
-                .assertSubject(Output.SUBJECT)
-                .assertBody(Output.BODY)
+                .openEmail(input.getMailNumber())
+                .assertSender(output.getSender())
+                .assertSubject(output.getSubject())
+                .assertBody(output.getBody())
                 .logout();
     }
 }
