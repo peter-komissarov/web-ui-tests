@@ -69,7 +69,7 @@ repositories {
 }
 
 dependencies {
-    //  jUnit
+    //  jUnit 5
     testImplementation("org.junit.jupiter:junit-jupiter-api:latest.release")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:latest.release")
 
@@ -79,9 +79,9 @@ dependencies {
     testImplementation("com.github.automatedowl:allure-environment-writer:latest.release")
 
     //  Lombok
-    testCompileOnly("org.projectlombok:lombok:latest.release")
     testAnnotationProcessor("org.projectlombok:lombok:latest.release")
+    testCompileOnly("org.projectlombok:lombok:latest.release")
 
     //  Slf4j
-    testRuntimeClasspath("org.slf4j:slf4j-nop:latest.release")
+    testRuntimeOnly("org.slf4j:slf4j-nop:latest.release")
 }

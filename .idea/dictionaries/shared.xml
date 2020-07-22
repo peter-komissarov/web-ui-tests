@@ -1,8 +1,18 @@
 <component name="ProjectDictionaryState">
   <dictionary name="shared">
     <words>
+      <w>Xset</w>
       <w>autodetection</w>
+      <w>chromedriver</w>
+      <w>geckodriver</w>
+      <w>iedriverserver</w>
+      <w>killall</w>
+      <w>msedgedriver</w>
+      <w>operadriver</w>
+      <w>phantomjs</w>
       <w>selenide</w>
+      <w>sunos</w>
+      <w>taskkill</w>
       <w>testinstance</w>
     </words>
   </dictionary>

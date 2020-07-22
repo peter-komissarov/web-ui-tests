@@ -9,19 +9,19 @@ import static com.codeborne.selenide.Selenide.$;
 
 
 public final class EmailPage extends Header {
-    @Step("Assert that email sender contains \"{expectedSender}\"")
+    @Step("Sender should contain")
     public final EmailPage assertSender(String expectedSender) {
         $(By.className("letter__author")).should(text(expectedSender));
         return this;
     }
 
-    @Step("Assert that email subject contains \"{expectedSubject}\"")
+    @Step("Subject should contain")
     public final EmailPage assertSubject(String expectedSubject) {
         $(By.className("thread__subject")).should(text(expectedSubject));
         return this;
     }
 
-    @Step("Assert that email body contains \"{expectedBody}\"")
+    @Step("Body should contain")
     public final EmailPage assertBody(String expectedBody) {
         $("div.js-helper:nth-child(1) > div:nth-child(2)").should(text(expectedBody));
         return this;

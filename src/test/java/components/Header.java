@@ -5,7 +5,7 @@ import io.qameta.allure.Step;
 import static com.codeborne.selenide.Selenide.$;
 
 public abstract class Header {
-    @Step("Click on \"logout\" button")
+    @Step("Logout")
     public final void logout() {
         $("#PH_logoutLink").click();
     }

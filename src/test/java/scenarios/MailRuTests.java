@@ -10,8 +10,6 @@ import pages.LoginPage;
 import pojo.Input;
 import pojo.Output;
 
-import static com.codeborne.selenide.Selenide.open;
-
 @DisplayName("Mail.ru suite")
 public final class MailRuTests extends BaseTest {
 
@@ -28,7 +26,7 @@ public final class MailRuTests extends BaseTest {
     @Story("Passed story")
     @Test
     public final void verifyEmailDataPassed() {
-        open(input.getBaseUrl(), LoginPage.class)
+        super.openUri(input.getBaseUrl(), LoginPage.class)
                 .setLogin(input.getLogin())
                 .goToPasswordEnter()
                 .setPassword(input.getPassword())
@@ -49,7 +47,7 @@ public final class MailRuTests extends BaseTest {
                 .toBuilder()
                 .sender("Invalid expected sender")
                 .build();
-        open(input.getBaseUrl(), LoginPage.class)
+        super.openUri(input.getBaseUrl(), LoginPage.class)
                 .setLogin(input.getLogin())
                 .goToPasswordEnter()
                 .setPassword(input.getPassword())
@@ -67,7 +65,7 @@ public final class MailRuTests extends BaseTest {
     @Story("Broken story")
     @Test
     public final void verifyEmailDataBroken() throws Exception {
-        open(input.getBaseUrl(), LoginPage.class)
+        super.openUri(input.getBaseUrl(), LoginPage.class)
                 .setLogin(input.getLogin())
                 .goToPasswordEnter()
                 .setPassword(input.getPassword())
@@ -86,7 +84,7 @@ public final class MailRuTests extends BaseTest {
     @Disabled
     @Test
     public final void verifyEmailDataIgnored() {
-        open(input.getBaseUrl(), LoginPage.class)
+        super.openUri(input.getBaseUrl(), LoginPage.class)
                 .setLogin(input.getLogin())
                 .goToPasswordEnter()
                 .setPassword(input.getPassword())
