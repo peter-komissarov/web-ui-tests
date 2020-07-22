@@ -53,7 +53,7 @@ allure {
     version = "2.13.5"  //  https://github.com/allure-framework/allure2/releases
     autoconfigure = false
     configuration = "testImplementation"
-    clean = false
+    clean = true
     allureJavaVersion = "latest.release"
     aspectjweaver = true
     aspectjVersion = "latest.release"

@@ -15,20 +15,19 @@ public final class AllureHelper {
         ImmutableMap.Builder<String, String> builder = ImmutableMap.builder();
         builder.putAll(filterMapByKey(System.getProperties()));
         builder.putAll(filterMapByKey(System.getenv()));
+
         allureEnvironmentWriter(builder.build(), getAllureResults());
     }
 
     public static Map<String, String> filterMapByKey(Map<?, ?> map) {
-        Map<String, String> varsFiltered = new TreeMap<>();
+        Map<String, String> mapFiltered = new TreeMap<>();
 
-        map.forEach((key, value) -> {
-            String keyString = key.toString().toLowerCase();
-            String valueString = value.toString().toLowerCase();
-            if (Stream.of("name", "home", "version").anyMatch(keyString::contains)) {
-                varsFiltered.put(keyString, valueString);
-            }
-        });
-        return varsFiltered;
+        for (Map.Entry<?, ?> entry : map.entrySet()) {
+            String key = entry.getKey().toString().toLowerCase();
+            String value = entry.getValue().toString().toLowerCase();
+            if (Stream.of("name", "home", "version").anyMatch(key::contains)) mapFiltered.put(key, value);
+        }
+        return mapFiltered;
     }
 
     private static String getAllureResults() {
