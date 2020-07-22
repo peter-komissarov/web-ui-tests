@@ -10,28 +10,23 @@ import java.util.Arrays;
 public final class ProcessHelper {
     @Step("Close drivers")
     public static void closeDrivers() {
-        Arrays.asList(
+        for (String driver : Arrays.asList(
                 "chromedriver",
                 "geckodriver",
                 "msedgedriver",
                 "operadriver",
                 "phantomjs",
-                "iedriverserver")
-                .forEach(ProcessHelper::killByName);
+                "iedriverserver")) {
+            killByName(driver);
+        }
     }
 
-    private static void killByName(String procName) {
-        String osName = System.getProperty("os.name").toLowerCase();
-        String command;
-
-        if (osName.contains("win")) {
-            command = "taskkill /t /f /im " + procName + "*";
-        } else {
-            command = "pkill -f " + procName;
-        }
+    public static void killByName(String procName) {
+        String os = System.getProperty("os.name").toLowerCase();
+        String script = os.contains("win") ? ("taskkill /t /f /im " + procName + "*") : ("pkill -9 -x " + procName);
 
         try {
-            Runtime.getRuntime().exec(command).waitFor();
+            Runtime.getRuntime().exec(script).waitFor();
         } catch (IOException | InterruptedException e) {
             log.warning(e.getMessage());
         }
