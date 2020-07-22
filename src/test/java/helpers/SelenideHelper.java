@@ -30,11 +30,11 @@ public final class SelenideHelper {
 
     @Step("Add listener for current thread")
     public void addListener() {
-        SelenideLogger.addListener(String.valueOf(Thread.currentThread().getId()), new AllureSelenide());
+        SelenideLogger.addListener(ThreadHelper.getThreadId(), new AllureSelenide());
     }
 
     @Step("Remove listener for current thread")
     public void removeListener() {
-        SelenideLogger.removeListener(String.valueOf(Thread.currentThread().getId()));
+        SelenideLogger.removeListener(ThreadHelper.getThreadId());
     }
 }
