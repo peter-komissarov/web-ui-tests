@@ -29,12 +29,12 @@ public final class SelenideHelper {
     }
 
     @Step("Add listener for current thread")
-    public void addListener() {
+    public static void addListener() {
         SelenideLogger.addListener(ThreadHelper.getThreadId(), new AllureSelenide());
     }
 
     @Step("Remove listener for current thread")
-    public void removeListener() {
+    public static void removeListener() {
         SelenideLogger.removeListener(ThreadHelper.getThreadId());
     }
 }

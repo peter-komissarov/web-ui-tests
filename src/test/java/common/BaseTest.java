@@ -14,8 +14,8 @@ import static com.codeborne.selenide.Selenide.open;
 
 public abstract class BaseTest {
     @BeforeAll
-    protected static void beforeAll() {
-        ProcessHelper.closeDriver();
+    public static void beforeAll() {
+        ProcessHelper.closeDrivers();
         SelenideHelper.configureSelenide();
         AllureHelper.writeEnvVariables();
     }
@@ -26,12 +26,12 @@ public abstract class BaseTest {
 
     @BeforeEach
     protected final void beforeEach() {
-        new SelenideHelper().addListener();
+        SelenideHelper.addListener();
     }
 
     @AfterEach
     protected final void afterEach() {
-        new SelenideHelper().removeListener();
+        SelenideHelper.removeListener();
     }
 
     @Step("Open")

@@ -13,13 +13,13 @@ public final class AllureHelper {
         ImmutableMap.Builder<String, String> builder = ImmutableMap.builder();
 
         System.getProperties().forEach((Object key, Object value) -> {
-            if (Stream.of("name", "home", "ver").anyMatch(key.toString()::contains)) {
+            if (Stream.of("name", "home", "ver").anyMatch(key.toString().toLowerCase()::contains)) {
                 builder.put(key.toString(), value.toString());
             }
         });
 
         System.getenv().forEach((String key, String value) -> {
-            if (Stream.of("name", "home", "ver").anyMatch(key::contains)) {
+            if (Stream.of("name", "home", "version").anyMatch(key.toLowerCase()::contains)) {
                 builder.put(key, value);
             }
         });

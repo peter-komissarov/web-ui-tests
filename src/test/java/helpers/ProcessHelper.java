@@ -5,31 +5,35 @@ import lombok.extern.java.Log;
 
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.List;
 
 @Log
 public final class ProcessHelper {
-    @Step("Close driver")
-    public static void closeDriver() {
-        String osName = System.getProperty("os.name").toLowerCase();
-        List<String> drivers = Arrays.asList(
+    @Step("Close drivers")
+    public static void closeDrivers() {
+        Arrays.asList(
                 "chromedriver",
                 "geckodriver",
                 "msedgedriver",
                 "operadriver",
                 "phantomjs",
-                "iedriverserver");
+                "iedriverserver")
+                .forEach(ProcessHelper::killByName);
+    }
 
-        for (String driver : drivers) {
-            try {
-                if (osName.contains("win")) {
-                    Runtime.getRuntime().exec("taskkill /t /f /im " + driver + "*").waitFor();
-                } else {
-                    Runtime.getRuntime().exec("pkill -f " + driver).waitFor();
-                }
-            } catch (IOException | InterruptedException e) {
-                log.warning(e.getMessage());
-            }
+    private static void killByName(String procName) {
+        String osName = System.getProperty("os.name").toLowerCase();
+        String command;
+
+        if (osName.contains("win")) {
+            command = "taskkill /t /f /im " + procName + "*";
+        } else {
+            command = "pkill -f " + procName;
+        }
+
+        try {
+            Runtime.getRuntime().exec(command).waitFor();
+        } catch (IOException | InterruptedException e) {
+            log.warning(e.getMessage());
         }
     }
 }
