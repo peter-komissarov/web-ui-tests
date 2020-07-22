@@ -26,12 +26,13 @@ public final class MailRuTests extends BaseTest {
     @Story("Passed story")
     @Test
     public final void verifyEmailDataPassed() {
-        super.openUri(input.getBaseUrl(), LoginPage.class)
+        super
+                .openUri(input.getBaseUrl(), LoginPage.class)
                 .setLogin(input.getLogin())
-                .goToPasswordEnter()
+                .goToPassword()
                 .setPassword(input.getPassword())
-                .enterToMailbox()
-                .openEmail(input.getMailNumber())
+                .goIntoMailbox()
+                .openMail(input.getMailNumber())
                 .assertSender(output.getSender())
                 .assertSubject(output.getSubject())
                 .assertBody(output.getBody())
@@ -47,12 +48,13 @@ public final class MailRuTests extends BaseTest {
                 .toBuilder()
                 .sender("Invalid expected sender")
                 .build();
-        super.openUri(input.getBaseUrl(), LoginPage.class)
+        super
+                .openUri(input.getBaseUrl(), LoginPage.class)
                 .setLogin(input.getLogin())
-                .goToPasswordEnter()
+                .goToPassword()
                 .setPassword(input.getPassword())
-                .enterToMailbox()
-                .openEmail(input.getMailNumber())
+                .goIntoMailbox()
+                .openMail(input.getMailNumber())
                 .assertSender(invalidOutput.getSender())
                 .assertSubject(invalidOutput.getSubject())
                 .assertBody(invalidOutput.getBody())
@@ -65,12 +67,13 @@ public final class MailRuTests extends BaseTest {
     @Story("Broken story")
     @Test
     public final void verifyEmailDataBroken() throws Exception {
-        super.openUri(input.getBaseUrl(), LoginPage.class)
+        super
+                .openUri(input.getBaseUrl(), LoginPage.class)
                 .setLogin(input.getLogin())
-                .goToPasswordEnter()
+                .goToPassword()
                 .setPassword(input.getPassword())
-                .enterToMailbox()
-                .openEmail(input.getMailNumber())
+                .goIntoMailbox()
+                .openMail(input.getMailNumber())
                 .assertSender(output.getSender())
                 .assertSubject(output.getSubject())
                 .assertBody(output.getBody())
@@ -84,12 +87,13 @@ public final class MailRuTests extends BaseTest {
     @Disabled
     @Test
     public final void verifyEmailDataIgnored() {
-        super.openUri(input.getBaseUrl(), LoginPage.class)
+        super
+                .openUri(input.getBaseUrl(), LoginPage.class)
                 .setLogin(input.getLogin())
-                .goToPasswordEnter()
+                .goToPassword()
                 .setPassword(input.getPassword())
-                .enterToMailbox()
-                .openEmail(input.getMailNumber())
+                .goIntoMailbox()
+                .openMail(input.getMailNumber())
                 .assertSender(output.getSender())
                 .assertSubject(output.getSubject())
                 .assertBody(output.getBody())

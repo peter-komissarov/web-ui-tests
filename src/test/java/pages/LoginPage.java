@@ -17,7 +17,7 @@ public final class LoginPage extends Header {
     }
 
     @Step("Go to password")
-    public final LoginPage goToPasswordEnter() {
+    public final LoginPage goToPassword() {
         $("input.o-control").click();
         return this;
     }
@@ -29,7 +29,7 @@ public final class LoginPage extends Header {
     }
 
     @Step("Go into mailbox")
-    public final MainPage enterToMailbox() {
+    public final MainPage goIntoMailbox() {
         $("input.o-control").click();
         return page(MainPage.class);
     }
