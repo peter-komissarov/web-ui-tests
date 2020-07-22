@@ -15,7 +15,7 @@ import static com.codeborne.selenide.Selenide.open;
 public abstract class BaseTest {
     @BeforeAll
     protected static void beforeAll() {
-        ProcessHelper.killWebDriver();
+        ProcessHelper.closeDriver();
         SelenideHelper.configureSelenide();
         AllureHelper.writeEnvVariables();
     }

@@ -83,5 +83,5 @@ dependencies {
     testCompileOnly("org.projectlombok:lombok:latest.release")
 
     //  Slf4j
-    testRuntimeOnly("org.slf4j:slf4j-nop:latest.release")
+    testImplementation("org.slf4j:slf4j-nop:latest.release")
 }

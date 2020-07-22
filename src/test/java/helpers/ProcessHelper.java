@@ -9,8 +9,8 @@ import java.util.stream.Stream;
 
 @Log
 public final class ProcessHelper {
-    @Step("Kill web driver")
-    public static void killWebDriver() {
+    @Step("Close driver")
+    public static void closeDriver() {
         for (String driver : Arrays.asList("chromedriver", "geckodriver", "msedgedriver", "operadriver", "phantomjs", "iedriverserver")) {
             try {
                 String osName = System.getProperty("os.name").toLowerCase();
