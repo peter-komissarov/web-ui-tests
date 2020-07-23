@@ -10,13 +10,13 @@ sourceCompatibility = JavaVersion.current()
 targetCompatibility = JavaVersion.current()
 
 compileJava {
-    enabled = false
+    enabled = true
     options.fork = true
     options.incremental = true
 }
 
 processResources {
-    enabled = false
+    enabled = true
 }
 
 compileTestJava {
@@ -69,7 +69,7 @@ repositories {
 }
 
 dependencies {
-    //  jUnit 5
+    //  JUnit5
     testImplementation("org.junit.jupiter:junit-jupiter-api:latest.release")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:latest.release")
 
@@ -84,4 +84,9 @@ dependencies {
 
     //  Slf4j
     testImplementation("org.slf4j:slf4j-nop:latest.release")
+
+    // Spring
+    testImplementation("org.springframework:spring-context:latest.release")
+    testImplementation("org.springframework:spring-beans:latest.release")
+    testImplementation("org.springframework.boot:spring-boot-autoconfigure:latest.release")
 }

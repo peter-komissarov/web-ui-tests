@@ -1,7 +1,7 @@
 package common;
 
 import helpers.AllureHelper;
-import helpers.ProcessHelper;
+import helpers.DriverHelper;
 import helpers.SelenideHelper;
 import io.qameta.allure.Step;
 import org.junit.jupiter.api.AfterAll;
@@ -15,7 +15,7 @@ import static com.codeborne.selenide.Selenide.open;
 public abstract class BaseTest {
     @BeforeAll
     public static void beforeAll() {
-        ProcessHelper.closeDrivers();
+        DriverHelper.closeDrivers();
         SelenideHelper.configureSelenide();
         AllureHelper.writeEnvVariables();
     }
