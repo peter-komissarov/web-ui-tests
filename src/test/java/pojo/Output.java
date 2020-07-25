@@ -1,11 +1,9 @@
 package pojo;
 
 import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Value;
 
-@Getter
-@Setter
+@Value
 @Builder(toBuilder = true)
 public class Output {
     @Builder.Default

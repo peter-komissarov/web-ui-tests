@@ -11,7 +11,7 @@ import pojo.Input;
 import pojo.Output;
 
 @DisplayName("Mail.ru suite")
-public final class MailRuTests extends BaseTest {
+public class MailRuTest extends BaseTest {
 
     private static final Input input;
     private static final Output output;
@@ -25,7 +25,7 @@ public final class MailRuTests extends BaseTest {
     @Feature("Mailbox feature")
     @Story("Passed story")
     @Test
-    public final void verifyEmailDataPassed() {
+    public void testVerifyEmailDataPassed() {
         super
                 .openUri(input.getBaseUrl(), LoginPage.class)
                 .setLogin(input.getLogin())
@@ -43,7 +43,7 @@ public final class MailRuTests extends BaseTest {
     @Feature("Mailbox feature")
     @Story("Failed story")
     @Test
-    public final void verifyEmailDataFailed() {
+    public void testVerifyEmailDataFailed() {
         Output invalidOutput = output
                 .toBuilder()
                 .sender("Invalid expected sender")
@@ -66,7 +66,7 @@ public final class MailRuTests extends BaseTest {
     @Feature("Mailbox feature")
     @Story("Broken story")
     @Test
-    public final void verifyEmailDataBroken() throws Exception {
+    public void testVerifyEmailDataBroken() throws Exception {
         super
                 .openUri(input.getBaseUrl(), LoginPage.class)
                 .setLogin(input.getLogin())
@@ -86,7 +86,7 @@ public final class MailRuTests extends BaseTest {
     @Story("Ignored story")
     @Disabled
     @Test
-    public final void verifyEmailDataIgnored() {
+    public void testVerifyEmailDataIgnored() {
         super
                 .openUri(input.getBaseUrl(), LoginPage.class)
                 .setLogin(input.getLogin())

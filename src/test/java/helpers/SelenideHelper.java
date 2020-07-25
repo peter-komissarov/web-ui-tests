@@ -15,8 +15,8 @@ public final class SelenideHelper {
         Configuration.clickViaJs = false;
         Configuration.driverManagerEnabled = true;
         Configuration.fastSetValue = true;
-        Configuration.headless = true;
-        Configuration.holdBrowserOpen = false;
+        Configuration.headless = false;
+        Configuration.holdBrowserOpen = true;
         Configuration.pageLoadStrategy = "normal";
         Configuration.pollingInterval = 200;
         Configuration.reopenBrowserOnFail = true;
