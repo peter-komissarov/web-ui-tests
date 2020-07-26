@@ -10,13 +10,13 @@ sourceCompatibility = JavaVersion.current()
 targetCompatibility = JavaVersion.current()
 
 compileJava {
-    enabled = true
+    enabled = false
     options.fork = true
     options.incremental = true
 }
 
 processResources {
-    enabled = true
+    enabled = false
 }
 
 compileTestJava {
@@ -69,7 +69,7 @@ repositories {
 }
 
 dependencies {
-    //  JUnit5
+    //  JUnit 5
     testImplementation("org.junit.jupiter:junit-jupiter-api:latest.release")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:latest.release")
 
@@ -77,6 +77,10 @@ dependencies {
     testImplementation("com.codeborne:selenide:latest.release")
     testImplementation("io.qameta.allure:allure-selenide:latest.release")
     testImplementation("com.github.automatedowl:allure-environment-writer:latest.release")
+
+    //  Spring framework
+    testCompileOnly("org.springframework:spring-context:latest.release")
+    testCompileOnly("org.springframework:spring-test:latest.release")
 
     //  Lombok
     testAnnotationProcessor("org.projectlombok:lombok:latest.release")

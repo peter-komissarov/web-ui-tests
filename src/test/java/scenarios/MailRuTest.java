@@ -6,6 +6,7 @@ import io.qameta.allure.Story;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import pages.LoginPage;
 import pojo.Input;
 import pojo.Output;
@@ -13,13 +14,10 @@ import pojo.Output;
 @DisplayName("Mail.ru suite")
 public class MailRuTest extends BaseTest {
 
-    private static final Input input;
-    private static final Output output;
-
-    static {
-        input = Input.builder().build();
-        output = Output.builder().build();
-    }
+    @Autowired
+    private Input input;
+    @Autowired
+    private Output output;
 
     @DisplayName("Passed test")
     @Feature("Mailbox feature")
