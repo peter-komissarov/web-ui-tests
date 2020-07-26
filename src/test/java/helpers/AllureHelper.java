@@ -3,6 +3,7 @@ package helpers;
 import com.google.common.collect.ImmutableMap;
 import io.qameta.allure.Step;
 
+import java.util.TreeMap;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
 
@@ -11,17 +12,19 @@ import static com.github.automatedowl.tools.AllureEnvironmentWriter.allureEnviro
 public final class AllureHelper {
 
     @Step("Add environment variables to report")
-    public static void writeEnvVariables() {
-        ImmutableMap.Builder<String, String> builder = ImmutableMap.builder();
+    public final void writeEnvVariables(MapHelper mapHelper) {
+        TreeMap<String, String> treeMap = new TreeMap<>();
         Supplier<Stream<String>> keys = () -> Stream.of("name", "home", "version");
-        builder.putAll(MapHelper.filterByKeys(System.getProperties(), keys));
-        builder.putAll(MapHelper.filterByKeys(System.getenv(), keys));
-
+        treeMap.putAll(mapHelper.beatifyMap(mapHelper.filterByKeys(System.getProperties(), keys)));
+        treeMap.putAll(mapHelper.beatifyMap(mapHelper.filterByKeys(System.getenv(), keys)));
         String allureResultsProperty = System.getProperty("allure.results.directory");
+        ImmutableMap<String, String> immutableMap = new ImmutableMap.Builder<String, String>()
+                .putAll(treeMap)
+                .build();
         if (allureResultsProperty == null) {
-            allureEnvironmentWriter(builder.build());
+            allureEnvironmentWriter(immutableMap);
         } else {
-            allureEnvironmentWriter(builder.build(), allureResultsProperty + "/");
+            allureEnvironmentWriter(immutableMap, allureResultsProperty + "/");
         }
     }
 }

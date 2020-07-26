@@ -10,7 +10,7 @@ import io.qameta.allure.selenide.AllureSelenide;
 public final class SelenideHelper {
 
     @Step("Configure selenide")
-    public static void configureSelenide() {
+    public final void configureSelenide() {
         Configuration.assertionMode = AssertionMode.STRICT;
         Configuration.browser = "chrome";
         Configuration.clickViaJs = false;
@@ -30,12 +30,12 @@ public final class SelenideHelper {
     }
 
     @Step("Add listener for current thread")
-    public static void addListener() {
-        SelenideLogger.addListener(ThreadHelper.getThreadId(), new AllureSelenide());
+    public final void addListener(ThreadHelper threadHelper) {
+        SelenideLogger.addListener(threadHelper.getThreadId(), new AllureSelenide());
     }
 
     @Step("Remove listener for current thread")
-    public static void removeListener() {
-        SelenideLogger.removeListener(ThreadHelper.getThreadId());
+    public final void removeListener(ThreadHelper threadHelper) {
+        SelenideLogger.removeListener(threadHelper.getThreadId());
     }
 }

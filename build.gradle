@@ -1,16 +1,15 @@
 plugins {
     id "java"
-    id "io.qameta.allure" version "2.8.1"  //  https://github.com/allure-framework/allure-gradle/releases
+    id "io.qameta.allure" version "${allureGradleVersion}"
 }
 
-group getGroup()
-version getVersion()
-
-sourceCompatibility = JavaVersion.current()
-targetCompatibility = JavaVersion.current()
+repositories {
+    mavenCentral()
+}
 
 compileJava {
     enabled = false
+    options.encoding = "${encoding}"
     options.fork = true
     options.incremental = true
 }
@@ -21,8 +20,13 @@ processResources {
 
 compileTestJava {
     enabled = true
+    options.encoding = "${encoding}"
     options.fork = true
     options.incremental = true
+}
+
+processTestResources {
+    enabled = true
 }
 
 test {
@@ -39,38 +43,33 @@ test {
 }
 
 allure {
-    def allureVersion = "2.13.5"  //  https://github.com/allure-framework/allure2/releases
-    version = allureVersion
-    autoconfigure = true
-    aspectjweaver = false
-    allureJavaVersion = allureVersion
+    version = "${allureFrameworkVersion}"
+    configuration = "testImplementation"
+    aspectjweaver = true
     useJUnit5 {
-        version = allureVersion
+        version = "${allureFrameworkVersion}"
     }
-}
-
-repositories {
-    mavenCentral()
+    autoconfigure = true
 }
 
 dependencies {
     //  JUnit 5
-    testImplementation("org.junit.jupiter:junit-jupiter-api:latest.release")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:latest.release")
+    testImplementation "org.junit.jupiter:junit-jupiter-api:${junitAPIVersion}"
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitEngineVersion}")
 
     //  Selenide + Allure
-    testImplementation("com.codeborne:selenide:latest.release")
-    testImplementation("io.qameta.allure:allure-selenide:latest.release")
-    testImplementation("com.github.automatedowl:allure-environment-writer:latest.release")
+    testImplementation("com.codeborne:selenide:${selenideVersion}")
+    testImplementation("io.qameta.allure:allure-selenide:${allureSelenideVersion}")
+    testImplementation("com.github.automatedowl:allure-environment-writer:${allureEnvironmentWriterVersion}")
 
     //  Spring framework
-    testImplementation("org.springframework:spring-context:latest.release")
-    testImplementation("org.springframework:spring-test:latest.release")
+    testImplementation("org.springframework:spring-context:${springContextVersion}")
+    testImplementation("org.springframework:spring-test:${springTestVersion}")
 
     //  Lombok
-    testAnnotationProcessor("org.projectlombok:lombok:latest.release")
-    testCompileOnly("org.projectlombok:lombok:latest.release")
+    testAnnotationProcessor("org.projectlombok:lombok:${lombokVersion}")
+    testCompileOnly("org.projectlombok:lombok:${lombokVersion}")
 
     //  Slf4j
-    testImplementation("org.slf4j:slf4j-nop:latest.release")
+    testImplementation("org.slf4j:slf4j-nop:${slf4jNopVersion}")
 }

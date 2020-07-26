@@ -17,5 +17,5 @@ public class Input {
     String password = "your_password_here";
 
     @Builder.Default
-    int mailNumber = 1;  // number of a mail in the mailbox from above
+    byte mailNumber = 1;  // number of a mail in the mailbox from above
 }

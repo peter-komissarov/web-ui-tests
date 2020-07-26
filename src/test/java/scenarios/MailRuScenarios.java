@@ -1,6 +1,6 @@
 package scenarios;
 
-import common.BaseTest;
+import common.BaseScenario;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 import org.junit.jupiter.api.Disabled;
@@ -11,19 +11,13 @@ import pages.LoginPage;
 import pojo.Input;
 import pojo.Output;
 
-@DisplayName("Mail.ru suite")
-public class MailRuTest extends BaseTest {
+@Feature("Mail.ru mailbox")
+public final class MailRuScenarios extends BaseScenario {
 
-    @Autowired
-    protected Input input;
-    @Autowired
-    protected Output output;
-
-    @DisplayName("Passed test")
-    @Feature("Mailbox feature")
+    @DisplayName("Passed scenario")
     @Story("Passed story")
     @Test
-    public void testVerifyEmailDataPassed() {
+    public final void scenarioVerifyEmailDataPassed(@Autowired Input input, @Autowired Output output) {
         super
                 .openUri(input.getBaseUrl(), LoginPage.class)
                 .setLogin(input.getLogin())
@@ -37,11 +31,10 @@ public class MailRuTest extends BaseTest {
                 .logout();
     }
 
-    @DisplayName("Failed test")
-    @Feature("Mailbox feature")
+    @DisplayName("Failed scenario")
     @Story("Failed story")
     @Test
-    public void testVerifyEmailDataFailed() {
+    public final void scenarioVerifyEmailDataFailed(@Autowired Input input, @Autowired Output output) {
         Output invalidOutput = output
                 .toBuilder()
                 .sender("Invalid expected sender")
@@ -60,11 +53,10 @@ public class MailRuTest extends BaseTest {
         throw new AssertionError("Failed test example");
     }
 
-    @DisplayName("Broken test")
-    @Feature("Mailbox feature")
+    @DisplayName("Broken scenario")
     @Story("Broken story")
     @Test
-    public void testVerifyEmailDataBroken() throws Exception {
+    public final void scenarioVerifyEmailDataBroken(@Autowired Input input, @Autowired Output output) throws Exception {
         super
                 .openUri(input.getBaseUrl(), LoginPage.class)
                 .setLogin(input.getLogin())
@@ -79,12 +71,11 @@ public class MailRuTest extends BaseTest {
         throw new Exception("Broken test example exception");
     }
 
-    @DisplayName("Ignored test")
-    @Feature("Mailbox feature")
+    @DisplayName("Ignored scenario")
     @Story("Ignored story")
     @Disabled
     @Test
-    public void testVerifyEmailDataIgnored() {
+    public final void scenarioVerifyEmailDataIgnored(@Autowired Input input, @Autowired Output output) {
         super
                 .openUri(input.getBaseUrl(), LoginPage.class)
                 .setLogin(input.getLogin())

@@ -8,11 +8,11 @@ import java.util.List;
 public final class DriverHelper {
 
     @Step("Close drivers")
-    public static void closeDrivers() {
-        getDrivers().forEach(ProcessHelper::killByName);
+    public final void closeDrivers(ProcessHelper processHelper) {
+        this.getDrivers().parallelStream().forEach(processHelper::killByName);
     }
 
-    private static List<String> getDrivers() {
+    private List<String> getDrivers() {
         return Arrays.asList(
                 "chromedriver",
                 "geckodriver",

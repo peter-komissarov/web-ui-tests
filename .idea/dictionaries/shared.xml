@@ -10,6 +10,8 @@
       <w>msedgedriver</w>
       <w>operadriver</w>
       <w>phantomjs</w>
+      <w>pojo</w>
+      <w>qameta</w>
       <w>selenide</w>
       <w>sunos</w>
       <w>taskkill</w>

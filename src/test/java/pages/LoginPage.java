@@ -8,7 +8,6 @@ import pages.mailbox.MainPage;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.page;
 
-
 public final class LoginPage extends Header {
 
     @Step("Set login")
