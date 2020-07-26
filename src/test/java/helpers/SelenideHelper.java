@@ -8,6 +8,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.selenide.AllureSelenide;
 
 public final class SelenideHelper {
+
     @Step("Configure selenide")
     public static void configureSelenide() {
         Configuration.assertionMode = AssertionMode.STRICT;

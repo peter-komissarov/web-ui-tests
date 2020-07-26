@@ -9,6 +9,7 @@ import static com.codeborne.selenide.Selenide.$;
 
 
 public final class EmailPage extends Header {
+
     @Step("Sender should contain")
     public final EmailPage assertSender(String expectedSender) {
         $(By.className("letter__author")).should(text(expectedSender));

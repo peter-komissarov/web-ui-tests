@@ -10,6 +10,7 @@ import static com.codeborne.selenide.Selenide.page;
 
 
 public final class LoginPage extends Header {
+
     @Step("Set login")
     public final LoginPage setLogin(String login) {
         $(By.id("mailbox:login")).setValue(login);

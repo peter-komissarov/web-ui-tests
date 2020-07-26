@@ -15,9 +15,9 @@ import pojo.Output;
 public class MailRuTest extends BaseTest {
 
     @Autowired
-    private Input input;
+    protected Input input;
     @Autowired
-    private Output output;
+    protected Output output;
 
     @DisplayName("Passed test")
     @Feature("Mailbox feature")

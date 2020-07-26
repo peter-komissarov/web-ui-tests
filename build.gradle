@@ -25,20 +25,9 @@ compileTestJava {
     options.incremental = true
 }
 
-processTestResources {
-    enabled = true
-}
-
-clean {
-    delete rootProject.buildDir
-}
-
 test {
-    debug = false
-    forkEvery = 100
-    maxParallelForks = Runtime.runtime.availableProcessors().intdiv(2) ?: 1
-    ignoreFailures(true)
     useJUnitPlatform()
+    ignoreFailures(true)
     reports {
         html.enabled = false
         junitXml.enabled = false
@@ -50,17 +39,13 @@ test {
 }
 
 allure {
-    version = "2.13.5"  //  https://github.com/allure-framework/allure2/releases
-    autoconfigure = false
-    configuration = "testImplementation"
-    clean = true
-    allureJavaVersion = "latest.release"
-    aspectjweaver = true
-    aspectjVersion = "latest.release"
-    resultsDir = file("allure-results")
-    reportDir = file("allure-report")
+    def allureVersion = "2.13.5"  //  https://github.com/allure-framework/allure2/releases
+    version = allureVersion
+    autoconfigure = true
+    aspectjweaver = false
+    allureJavaVersion = allureVersion
     useJUnit5 {
-        version = "latest.release"
+        version = allureVersion
     }
 }
 
@@ -79,8 +64,8 @@ dependencies {
     testImplementation("com.github.automatedowl:allure-environment-writer:latest.release")
 
     //  Spring framework
-    testCompileOnly("org.springframework:spring-context:latest.release")
-    testCompileOnly("org.springframework:spring-test:latest.release")
+    testImplementation("org.springframework:spring-context:latest.release")
+    testImplementation("org.springframework:spring-test:latest.release")
 
     //  Lombok
     testAnnotationProcessor("org.projectlombok:lombok:latest.release")

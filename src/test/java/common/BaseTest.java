@@ -19,6 +19,7 @@ import static com.codeborne.selenide.Selenide.open;
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = ConfigHelper.class)
 public abstract class BaseTest {
+
     @BeforeAll
     public static void beforeAll() {
         DriverHelper.closeDrivers();

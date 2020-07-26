@@ -6,6 +6,7 @@ import lombok.Value;
 @Value
 @Builder(toBuilder = true)
 public class Output {
+
     @Builder.Default
     String body = "expected_email_body";
 

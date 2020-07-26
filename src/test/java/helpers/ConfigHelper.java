@@ -7,6 +7,7 @@ import pojo.Output;
 
 @Configuration
 public class ConfigHelper {
+
     @Bean
     public Input getInput() {
         return Input.builder().build();

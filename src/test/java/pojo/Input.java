@@ -6,6 +6,7 @@ import lombok.Value;
 @Value
 @Builder(toBuilder = true)
 public class Input {
+
     @Builder.Default
     String baseUrl = "https://mail.ru/";
 
